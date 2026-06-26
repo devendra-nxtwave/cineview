@@ -5,7 +5,7 @@ import { WatchlistPage, MyListsPage, ListDetailPage } from './Collection'
 import { HomePage, MovieDetailPage } from './Movies'
 import { SettingsPage } from './Preferences'
 import { SearchPage } from './Search'
-import { TVShowDetailPage, SeasonDetailPage } from './TVShows'
+import { TVShowLayout, TVShowDetailPage, SeasonDetailPage } from './TVShows'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <LoginPage /> },
@@ -18,10 +18,13 @@ export const router = createBrowserRouter([
           { path: '/', element: <HomePage /> },
           { path: '/search', element: <SearchPage /> },
           { path: '/movies/:movieId', element: <MovieDetailPage /> },
-          { path: '/tv/:showId', element: <TVShowDetailPage /> },
           {
-            path: '/tv/:showId/season/:seasonNumber',
-            element: <SeasonDetailPage />,
+            path: '/tv/:showId',
+            element: <TVShowLayout />,
+            children: [
+              { index: true, element: <TVShowDetailPage /> },
+              { path: 'season/:seasonNumber', element: <SeasonDetailPage /> },
+            ],
           },
           { path: '/watchlist', element: <WatchlistPage /> },
           { path: '/lists', element: <MyListsPage /> },
