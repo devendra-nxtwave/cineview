@@ -1,8 +1,48 @@
 {
-    "watchlistTitle": "వాచ్‌లిస్ట్",
-    "watchlistPlaceholder": "మీ వాచ్‌లిస్ట్ ఇక్కడ కనిపిస్తుంది.",
-    "listsTitle": "నా జాబితాలు",
-    "listsPlaceholder": "మీ కస్టమ్ సేకరణలు ఇక్కడ కనిపిస్తాయి.",
-    "listDetailTitle": "జాబితా వివరాలు",
-    "listDetailPlaceholder": "జాబితా అంశాలు ఇక్కడ కనిపిస్తాయి."
+  "watchlistTitle": "వాచ్‌లిస్ట్",
+  "watchlistPlaceholder": "మీ వాచ్‌లిస్ట్ ఇక్కడ కనిపిస్తుంది.",
+  "listsTitle": "నా జాబితాలు",
+  "listsPlaceholder": "మీ కస్టమ్ సేకరణలు ఇక్కడ కనిపిస్తాయి.",
+  "listDetailTitle": "జాబితా వివరాలు",
+  "listDetailPlaceholder": "జాబితా అంశాలు ఇక్కడ కనిపిస్తాయి.",
+  "addWatchlist": "+ వాచ్‌లిస్ట్",
+  "inWatchlist": "✓ వాచ్‌లిస్ట్‌లో",
+  "inWatchlistWithNote": "✓ వాచ్‌లిస్ట్‌లో 📝",
+  "addWatchlistAria": "వాచ్‌లిస్ట్‌కు జోడించండి",
+  "removeWatchlistAria": "వాచ్‌లిస్ట్ నుండి తీసివేయండి",
+  "remove": "తీసివేయండి",
+  "removeAria": "వాచ్‌లిస్ట్ నుండి తీసివేయండి",
+  "statusChangeAria": "చూడటం స్థితిని మార్చండి",
+  "badgeAria": "వాచ్‌లిస్ట్‌లో {{count}} అంశాలు",
+  "filterLabel": "స్థితి ప్రకారం వాచ్‌లిస్ట్‌ను ఫిల్టర్ చేయండి",
+  "filter": {
+    "all": "అన్నీ"
+  },
+  "status": {
+    "want_to_watch": "చూడాలి",
+    "watching": "చూస్తున్నాను",
+    "completed": "పూర్తయింది"
+  },
+  "sort": {
+    "label": "క్రమబద్ధీకరించు",
+    "dateAdded": "జోడించిన తేదీ",
+    "rating": "రేటింగ్",
+    "title": "శీర్షిక"
+  },
+  "empty": {
+    "all": "మీ వాచ్‌లిస్ట్ ఖali.",
+    "filtered": "ఈ స్థితిలో అంశాలు లేవు.",
+    "browseHome": "సినిమాలు బ్రౌజ్ చేయండి"
+  },
+  "note": {
+    "label": "ప్రైవేట్ నోట్",
+    "placeholder": "ప్రైవేట్ నోట్ జోడించండి (గరిష్టం 300 అక్షరాలు)",
+    "empty": "ఇంకా నోట్ లేదు.",
+    "add": "నోట్ జోడించండి",
+    "edit": "నోట్ సవరించండి",
+    "save": "సేవ్",
+    "cancel": "రద్దు",
+    "clear": "నోట్ తొలగించండి",
+    "counter": "{{count}} / {{max}}"
   }
+}

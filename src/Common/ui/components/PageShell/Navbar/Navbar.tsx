@@ -2,12 +2,13 @@ import { type FormEvent, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
+import { WatchlistBadge } from '../../../../../Collection'
 import { LanguageSwitcher, preferencesStore, SUPPORTED_LOCALES } from '../../../../../Preferences'
+
 type NavbarProps = {
   username: string
   onLogout: () => void
 }
-
 
 export const Navbar = observer(function Navbar({ username, onLogout }: NavbarProps) {
   const { t } = useTranslation('common')
@@ -33,7 +34,10 @@ export const Navbar = observer(function Navbar({ username, onLogout }: NavbarPro
 
         <nav className="navbar-links">
           <NavLink to="/" end>{t('nav.home')}</NavLink>
-          <NavLink to="/watchlist">{t('nav.watchlist')}</NavLink>
+          <NavLink to="/watchlist" className="navbar-watchlist-link">
+            {t('nav.watchlist')}
+            <WatchlistBadge />
+          </NavLink>
           <NavLink to="/lists">{t('nav.lists')}</NavLink>
           <NavLink to="/settings">{t('nav.settings')}</NavLink>
         </nav>

@@ -1,8 +1,48 @@
 {
-    "watchlistTitle": "Watchlist",
-    "watchlistPlaceholder": "Your watchlist will appear here.",
-    "listsTitle": "My Lists",
-    "listsPlaceholder": "Your custom collections will appear here.",
-    "listDetailTitle": "List Detail",
-    "listDetailPlaceholder": "List items will appear here."
+  "watchlistTitle": "Watchlist",
+  "watchlistPlaceholder": "Your watchlist will appear here.",
+  "listsTitle": "My Lists",
+  "listsPlaceholder": "Your custom collections will appear here.",
+  "listDetailTitle": "List Detail",
+  "listDetailPlaceholder": "List items will appear here.",
+  "addWatchlist": "+ Watchlist",
+  "inWatchlist": "✓ In Watchlist",
+  "inWatchlistWithNote": "✓ In Watchlist 📝",
+  "addWatchlistAria": "Add to watchlist",
+  "removeWatchlistAria": "Remove from watchlist",
+  "remove": "Remove",
+  "removeAria": "Remove from watchlist",
+  "statusChangeAria": "Change watch status",
+  "badgeAria": "{{count}} items in watchlist",
+  "filterLabel": "Filter watchlist by status",
+  "filter": {
+    "all": "All"
+  },
+  "status": {
+    "want_to_watch": "Want to Watch",
+    "watching": "Watching",
+    "completed": "Completed"
+  },
+  "sort": {
+    "label": "Sort by",
+    "dateAdded": "Date Added",
+    "rating": "Rating",
+    "title": "Title"
+  },
+  "empty": {
+    "all": "Your watchlist is empty.",
+    "filtered": "No items with this status.",
+    "browseHome": "Browse movies"
+  },
+  "note": {
+    "label": "Private note",
+    "placeholder": "Add a private note (max 300 characters)",
+    "empty": "No note yet.",
+    "add": "Add note",
+    "edit": "Edit note",
+    "save": "Save",
+    "cancel": "Cancel",
+    "clear": "Clear note",
+    "counter": "{{count}} / {{max}}"
   }
+}

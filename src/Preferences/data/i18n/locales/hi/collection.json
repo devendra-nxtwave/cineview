@@ -1,8 +1,48 @@
 {
-    "watchlistTitle": "वॉचलिस्ट",
-    "watchlistPlaceholder": "आपकी वॉचलिस्ट यहाँ दिखेगी।",
-    "listsTitle": "मेरी सूचियाँ",
-    "listsPlaceholder": "आपके कस्टम संग्रह यहाँ दिखेंगे।",
-    "listDetailTitle": "सूची विवरण",
-    "listDetailPlaceholder": "सूची आइटम यहाँ दिखेंगे।"
+  "watchlistTitle": "वॉचलिस्ट",
+  "watchlistPlaceholder": "आपकी वॉचलिस्ट यहाँ दिखेगी।",
+  "listsTitle": "मेरी सूचियाँ",
+  "listsPlaceholder": "आपके कस्टम संग्रह यहाँ दिखेंगे।",
+  "listDetailTitle": "सूची विवरण",
+  "listDetailPlaceholder": "सूची आइटम यहाँ दिखेंगे।",
+  "addWatchlist": "+ वॉचलिस्ट",
+  "inWatchlist": "✓ वॉचलिस्ट में",
+  "inWatchlistWithNote": "✓ वॉचलिस्ट में 📝",
+  "addWatchlistAria": "वॉचलिस्ट में जोड़ें",
+  "removeWatchlistAria": "वॉचलिस्ट से हटाएँ",
+  "remove": "हटाएँ",
+  "removeAria": "वॉचलिस्ट से हटाएँ",
+  "statusChangeAria": "देखने की स्थिति बदलें",
+  "badgeAria": "वॉचलिस्ट में {{count}} आइटम",
+  "filterLabel": "स्थिति के अनुसार वॉचलिस्ट फ़िल्टर करें",
+  "filter": {
+    "all": "सभी"
+  },
+  "status": {
+    "want_to_watch": "देखना है",
+    "watching": "देख रहे हैं",
+    "completed": "पूरा हुआ"
+  },
+  "sort": {
+    "label": "क्रमबद्ध करें",
+    "dateAdded": "जोड़ने की तारीख",
+    "rating": "रेटिंग",
+    "title": "शीर्षक"
+  },
+  "empty": {
+    "all": "आपकी वॉचलिस्ट खाली है।",
+    "filtered": "इस स्थिति में कोई आइटम नहीं।",
+    "browseHome": "फ़िल्में ब्राउज़ करें"
+  },
+  "note": {
+    "label": "निजी नोट",
+    "placeholder": "निजी नोट जोड़ें (अधिकतम 300 अक्षर)",
+    "empty": "अभी कोई नोट नहीं।",
+    "add": "नोट जोड़ें",
+    "edit": "नोट संपादित करें",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "clear": "नोट हटाएँ",
+    "counter": "{{count}} / {{max}}"
   }
+}

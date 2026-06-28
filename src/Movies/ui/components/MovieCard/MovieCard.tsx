@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { PosterImage } from '../../../../Common'
+import { WatchlistToggle } from '../../../../Collection'
 import type { Movie } from '../../../../Common/core/types'
 
 type MovieCardProps = {
@@ -8,12 +8,6 @@ type MovieCardProps = {
 }
 
 export function MovieCard({ movie }: MovieCardProps) {
-  const { t } = useTranslation('movies')
-
-  function handleWatchlistClick() {
-    // M5: connect to WatchlistStore
-  }
-
   return (
     <article className="movie-card">
       <Link to={`/movies/${movie.id}`}>
@@ -21,13 +15,15 @@ export function MovieCard({ movie }: MovieCardProps) {
         <h3>{movie.title}</h3>
         <span>{movie.vote_average.toFixed(1)}</span>
       </Link>
-      <button
-        type="button"
-        onClick={handleWatchlistClick}
-        aria-label={t('addWatchlistAria')}
-      >
-        +
-      </button>
+
+      <WatchlistToggle
+        mediaType="movie"
+        mediaId={movie.id}
+        title={movie.title}
+        posterPath={movie.poster_path}
+        voteAverage={movie.vote_average}
+        variant="icon"
+      />
     </article>
   )
 }

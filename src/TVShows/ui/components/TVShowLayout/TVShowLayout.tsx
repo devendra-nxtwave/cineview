@@ -2,6 +2,7 @@ import { NavLink, Outlet, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { ErrorBoundary, PosterImage } from '../../../../Common'
+import { WatchlistToggle } from '../../../../Collection'
 import { useTVShowDetail } from '../../../data/hooks/useTVShowDetail'
 
 export const TVShowLayout = observer(function TVShowLayout() {
@@ -52,9 +53,14 @@ export const TVShowLayout = observer(function TVShowLayout() {
             <h1>{show.name}</h1>
             <p>★ {show.vote_average.toFixed(1)}</p>
             <p>{show.overview}</p>
-            <button type="button" aria-label={t('addWatchlistAria')}>
-              {t('addWatchlist')}
-            </button>
+            <WatchlistToggle
+              mediaType="tv"
+              mediaId={show.id}
+              title={show.name}
+              posterPath={show.poster_path}
+              voteAverage={show.vote_average}
+              variant="button"
+            />
           </div>
         </section>
       </ErrorBoundary>
