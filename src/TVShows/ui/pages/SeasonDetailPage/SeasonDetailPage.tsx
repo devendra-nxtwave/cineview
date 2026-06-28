@@ -4,16 +4,23 @@ import { useTranslation } from 'react-i18next'
 import { AsyncSection, PosterImage } from '../../../../Common'
 import { formatDate } from '../../../../Common/core/dateUtils'
 import { preferencesStore } from '../../../../Preferences/data/stores/PreferencesStore'
+import {
+  EpisodeCheckbox,
+  SeasonBatchActions,
+  SeasonProgressBar,
+  collectionStore,
+} from '../../../../Collection'
 import { useSeasonDetail } from '../../../data/hooks/useSeasonDetail'
 
 export const SeasonDetailPage = observer(function SeasonDetailPage() {
   const { t } = useTranslation('tvShows')
   const { showId, seasonNumber } = useParams()
+  const numericShowId = Number(showId)
+  const numericSeason = Number(seasonNumber)
 
-  const { episodes, isLoading, error } = useSeasonDetail(
-    Number(showId),
-    Number(seasonNumber),
-  )
+  const { episodes, isLoading, error } = useSeasonDetail(numericShowId, numericSeason)
+  const episodeIds = episodes.map((episode) => episode.id)
+  const { watched, total } = collectionStore.getSeasonProgress(numericShowId, episodeIds)
 
   const status = isLoading
     ? 'loading'
@@ -26,6 +33,17 @@ export const SeasonDetailPage = observer(function SeasonDetailPage() {
   return (
     <section className="season-detail">
       <h2>{t('seasonTitle', { number: seasonNumber })}</h2>
+
+      {episodes.length > 0 && (
+        <>
+          <SeasonProgressBar watched={watched} total={total} />
+          <SeasonBatchActions
+            onMarkAll={() => collectionStore.markSeason(numericShowId, episodeIds)}
+            onUnmarkAll={() => collectionStore.unmarkSeason(numericShowId, episodeIds)}
+          />
+        </>
+      )}
+
       <AsyncSection status={status} error={error} emptyMessage={t('noEpisodes')}>
         <ul className="episode-list">
           {episodes.map((episode) => (
@@ -40,7 +58,7 @@ export const SeasonDetailPage = observer(function SeasonDetailPage() {
                 )}
                 <p>{episode.overview || t('noOverview')}</p>
               </div>
-              <input type="checkbox" disabled aria-label={t('markWatchedAria')} />
+              <EpisodeCheckbox showId={numericShowId} episodeId={episode.id} />
             </li>
           ))}
         </ul>

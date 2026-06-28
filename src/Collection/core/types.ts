@@ -23,6 +23,28 @@ export type WatchlistEntry = {
   updatedAt: string
 }
 
+export type ListItem = {
+  mediaType: MediaType
+  mediaId: number
+  snapshot: MediaSnapshot
+  addedAt: string
+}
+
+export type CustomList = {
+  id: string
+  name: string
+  description?: string
+  items: ListItem[]
+  createdAt: string
+  updatedAt: string
+}
+
+export type EpisodeProgressEntry = {
+  showId: number
+  watchedEpisodeIds: number[]
+  totalEpisodes?: number
+}
+
 export function getMediaKey(mediaType: MediaType, mediaId: number): string {
   return `${mediaType}:${mediaId}`
 }

@@ -44,5 +44,35 @@
     "cancel": "रद्द करें",
     "clear": "नोट हटाएँ",
     "counter": "{{count}} / {{max}}"
+  },
+  
+  "lists": {
+    "create": "सूची बनाएँ",
+    "createTitle": "नई सूची बनाएँ",
+    "nameLabel": "सूची का नाम",
+    "descriptionLabel": "विवरण (वैकल्पिक)",
+    "empty": "आपकी कोई कस्टम सूची नहीं है।",
+    "noItems": "इस सूची में कोई आइटम नहीं।",
+    "noListsYet": "पहले मेरी सूचियों से एक सूची बनाएँ।",
+    "itemCount": "{{count}} आइटम",
+    "addToList": "सूची में जोड़ें",
+    "addToListAria": "कस्टम सूची में जोड़ें",
+    "rename": "नाम बदलें",
+    "delete": "सूची हटाएँ",
+    "deleteTitle": "सूची हटाएँ?",
+    "deleteMessage": "\"{{name}}\" हटाएँ? वॉचलिस्ट प्रभावित नहीं होगी।",
+    "deleteConfirm": "हटाएँ",
+    "removeItemAria": "सूची से हटाएँ",
+    "notFoundTitle": "सूची नहीं मिली",
+    "notFoundDescription": "यह सूची मौजूद नहीं है या हटा दी गई।",
+    "backToLists": "मेरी सूचियों पर वापस"
+  },
+  "episodes": {
+    "seasonProgress": "{{watched}} / {{total}} देखे गए",
+    "showProgress": "{{watched}} / {{total}} एपिसोड देखे गए",
+    "watchedCount": "{{count}} देखे गए",
+    "cardBadge": "{{watched}}/{{total}} एप.",
+    "markAll": "सभी देखे चिह्नित करें",
+    "unmarkAll": "सभी अचिह्नित करें"
   }
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { PageShell } from '../../../../Common'
-import { watchlistStore } from '../../../data/stores/WatchlistStore'
+import { collectionStore } from '../../../data/stores/CollectionStore'
 import type { WatchlistFilterStatus, WatchlistSortOption } from '../../../core/types'
 import { EmptyWatchlist } from '../../components/EmptyWatchlist/EmptyWatchlist'
 import { StatusFilterTabs } from '../../components/StatusFilterTabs/StatusFilterTabs'
@@ -15,7 +15,7 @@ export const WatchlistPage = observer(function WatchlistPage() {
   const [activeStatus, setActiveStatus] = useState<WatchlistFilterStatus>('all')
   const [sort, setSort] = useState<WatchlistSortOption>('dateAdded')
 
-  let entries = watchlistStore.entries
+  let entries = collectionStore.entries
 
   if (activeStatus !== 'all') {
     entries = entries.filter((entry) => entry.status === activeStatus)
@@ -31,7 +31,7 @@ export const WatchlistPage = observer(function WatchlistPage() {
     displayedEntries.sort((a, b) => a.snapshot.title.localeCompare(b.snapshot.title))
   }
 
-  if (!watchlistStore.isHydrated) {
+  if (!collectionStore.isHydrated) {
     return (
       <PageShell title={t('watchlistTitle')}>
         <p>{tCommon('loading')}</p>
@@ -44,11 +44,11 @@ export const WatchlistPage = observer(function WatchlistPage() {
       <div className="watchlist-toolbar">
         <StatusFilterTabs
           activeStatus={activeStatus}
-          counts={watchlistStore.getStatusCounts()}
+          counts={collectionStore.getStatusCounts()}
           onSelect={setActiveStatus}
         />
 
-        {watchlistStore.totalCount > 0 && (
+        {collectionStore.totalCount > 0 && (
           <WatchlistSortSelect value={sort} onChange={setSort} />
         )}
       </div>
@@ -62,16 +62,16 @@ export const WatchlistPage = observer(function WatchlistPage() {
               key={entry.id}
               entry={entry}
               onStatusChange={(status) =>
-                watchlistStore.updateStatus(entry.mediaType, entry.mediaId, status)
+                collectionStore.updateStatus(entry.mediaType, entry.mediaId, status)
               }
               onNoteSave={(note) =>
-                watchlistStore.updateNote(entry.mediaType, entry.mediaId, note)
+                collectionStore.updateNote(entry.mediaType, entry.mediaId, note)
               }
               onNoteClear={() =>
-                watchlistStore.updateNote(entry.mediaType, entry.mediaId, '')
+                collectionStore.updateNote(entry.mediaType, entry.mediaId, '')
               }
               onRemove={() =>
-                watchlistStore.remove(entry.mediaType, entry.mediaId)
+                collectionStore.remove(entry.mediaType, entry.mediaId)
               }
             />
           ))}

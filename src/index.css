@@ -468,7 +468,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -476,10 +476,13 @@ body {
 }
 
 .modal-content {
-  background: #1a1a1a;
-  padding: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
   border-radius: 8px;
   width: min(90vw, 800px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content iframe {
@@ -491,15 +494,15 @@ body {
 .search-input {
   width: 100%;
   padding: 0.625rem 0.75rem;
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #1a1a1a;
-  color: #f5f5f5;
+  background: var(--color-input-bg);
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .search-status {
-  color: #a3a3a3;
+  color: var(--color-muted);
   font-size: 0.875rem;
   margin: 0 0 1rem;
 }
@@ -510,7 +513,7 @@ body {
 }
 
 .search-hint {
-  color: #a3a3a3;
+  color: var(--color-muted);
   margin: 0;
 }
 
@@ -597,15 +600,15 @@ body {
 }
 
 .season-link {
-  color: #a3a3a3;
+  color: var(--color-muted);
   text-decoration: none;
   padding: 0.4rem 0.75rem;
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
 }
 
 .season-link.active {
-  color: #fff;
+  color: var(--color-text);
   border-color: #e50914;
 }
 
@@ -622,9 +625,10 @@ body {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 0.75rem;
+  background: var(--color-surface);
 }
 
 .episode-card img {
@@ -648,6 +652,7 @@ body {
     min-height: 280px;
   }
 }
+
 /* Watchlist */
 .navbar-watchlist-link {
   display: inline-flex;
@@ -695,10 +700,10 @@ body {
 
 .watchlist-toggle--button {
   padding: 0.5rem 1rem;
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #1a1a1a;
-  color: #f5f5f5;
+  background: var(--color-surface);
+  color: var(--color-text);
   cursor: pointer;
 }
 
@@ -731,10 +736,10 @@ body {
 .watchlist-sort select,
 .watchlist-card select {
   padding: 0.4rem 0.5rem;
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #1a1a1a;
-  color: #f5f5f5;
+  background: var(--color-input-bg);
+  color: var(--color-text);
 }
 
 .watchlist-grid {
@@ -747,9 +752,9 @@ body {
   display: flex;
   gap: 1rem;
   padding: 0.75rem;
-  border: 1px solid #333;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #1a1a1a;
+  background: var(--color-surface);
 }
 
 .watchlist-card img,
@@ -779,7 +784,7 @@ body {
 
 .watchlist-card-rating {
   font-size: 0.875rem;
-  color: #a3a3a3;
+  color: var(--color-muted);
 }
 
 .empty-watchlist {
@@ -790,6 +795,7 @@ body {
 .empty-watchlist a {
   color: #e50914;
 }
+
 .watchlist-note {
   display: flex;
   flex-direction: column;
@@ -851,4 +857,314 @@ body {
   color: var(--color-text);
   cursor: pointer;
   font-size: 0.8rem;
+}
+
+/* Custom Lists */
+.lists-toolbar,
+.list-detail-actions {
+  margin-bottom: 1rem;
+}
+
+.lists-toolbar button,
+.list-detail-actions button,
+.rename-list-inline button,
+.season-batch-actions button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.lists-grid,
+.list-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.list-card {
+  display: block;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  text-decoration: none;
+  color: inherit;
+}
+
+.list-card-previews {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.list-card-previews img,
+.list-card-previews .poster-placeholder {
+  width: 100%;
+  height: 80px;
+}
+
+.list-card-empty-preview {
+  grid-column: 1 / -1;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+.empty-lists {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.list-item-card {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.list-item-card img,
+.list-item-card .poster-placeholder {
+  width: 80px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.rename-list-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.rename-list-inline h1 {
+  margin: 0;
+}
+
+.rename-list-inline input {
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.modal-actions button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.modal-actions button[type='submit'] {
+  background: #e50914;
+  border-color: #e50914;
+  color: #fff;
+}
+
+.modal-actions .danger,
+.list-detail-actions .danger {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: var(--color-surface);
+}
+
+.create-list-modal {
+  width: min(90vw, 480px);
+}
+
+.create-list-modal h2 {
+  margin: 0 0 0.5rem;
+}
+
+.create-list-modal label {
+  display: block;
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.create-list-modal input,
+.create-list-modal textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  font-family: inherit;
+}
+
+.delete-list-dialog {
+  width: min(90vw, 420px);
+}
+
+.delete-list-dialog p {
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* Movie card actions — watchlist + add to list side by side */
+.media-card-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 0.35rem;
+}
+
+.media-card-actions .watchlist-toggle--icon {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
+.media-card-actions .watchlist-toggle--icon,
+.media-card-actions .add-to-list-trigger--icon {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.media-card-actions .watchlist-toggle--icon.active {
+  background: #e50914;
+}
+
+.add-to-list-popover {
+  position: relative;
+}
+
+.add-to-list-trigger--icon {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.add-to-list-trigger--button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.add-to-list-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  min-width: 200px;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.add-to-list-menu-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.add-to-list-empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.add-to-list-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.add-to-list-menu label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.add-to-list-menu--portal {
+  position: fixed;
+  right: auto;
+  z-index: 1100;
+  max-height: min(60vh, 320px);
+  overflow-y: auto;
+}
+
+/* Episode progress */
+.season-progress-bar {
+  margin-bottom: 0.75rem;
+}
+
+.season-progress-label {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin-bottom: 0.35rem;
+}
+
+.season-progress-track {
+  height: 6px;
+  background: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.season-progress-fill {
+  height: 100%;
+  background: #e50914;
+}
+
+.season-batch-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.show-progress-indicator,
+.episode-progress-badge {
+  font-size: 0.875rem;
+  color: var(--color-muted);
 }

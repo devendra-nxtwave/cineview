@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PosterImage } from '../../../../Common'
 import type { WatchlistEntry, WatchlistStatus } from '../../../core/types'
+import { EpisodeProgressBadge } from '../EpisodeProgressBadge/EpisodeProgressBadge'
 import { WatchlistNote } from '../WatchlistNote/WatchlistNote'
 
 const STATUSES: WatchlistStatus[] = ['want_to_watch', 'watching', 'completed']
@@ -41,6 +42,10 @@ export function WatchlistCard({
         <span className="watchlist-card-rating">
           ★ {entry.snapshot.voteAverage.toFixed(1)}
         </span>
+
+        {entry.mediaType === 'tv' && (
+          <EpisodeProgressBadge showId={entry.mediaId} />
+        )}
 
         <select
           value={entry.status}

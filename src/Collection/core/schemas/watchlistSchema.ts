@@ -1,14 +1,7 @@
 import { z } from 'zod'
+import { mediaSnapshotSchema, mediaTypeSchema, watchlistStatusSchema } from './sharedSchema'
 
-export const mediaTypeSchema = z.enum(['movie', 'tv'])
-
-export const watchlistStatusSchema = z.enum(['want_to_watch', 'watching', 'completed'])
-
-export const mediaSnapshotSchema = z.object({
-  title: z.string().min(1),
-  posterPath: z.string().nullable(),
-  voteAverage: z.number(),
-})
+export { mediaTypeSchema, mediaSnapshotSchema, watchlistStatusSchema }
 
 export const watchlistEntrySchema = z.object({
   id: z.string().min(1),

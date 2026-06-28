@@ -1,8 +1,14 @@
+import { useEffect } from 'react'
 import { NavLink, Outlet, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
 import { ErrorBoundary, PosterImage } from '../../../../Common'
-import { WatchlistToggle } from '../../../../Collection'
+import {
+  WatchlistToggle,
+  AddToListPopover,
+  ShowProgressIndicator,
+  collectionStore,
+} from '../../../../Collection'
 import { useTVShowDetail } from '../../../data/hooks/useTVShowDetail'
 
 export const TVShowLayout = observer(function TVShowLayout() {
@@ -12,6 +18,15 @@ export const TVShowLayout = observer(function TVShowLayout() {
   const { showId } = useParams()
   const id = Number(showId)
   const { show, isLoading, notFound, error } = useTVShowDetail(id)
+
+  const seasons = show?.seasons.filter((s) => s.season_number > 0) ?? []
+  const totalEpisodes = seasons.reduce((sum, season) => sum + season.episode_count, 0)
+
+  useEffect(() => {
+    if (show) {
+      collectionStore.setShowEpisodeTotal(id, totalEpisodes)
+    }
+  }, [id, show, totalEpisodes])
 
   if (notFound) {
     return (
@@ -37,8 +52,6 @@ export const TVShowLayout = observer(function TVShowLayout() {
     )
   }
 
-  const seasons = show.seasons.filter((s) => s.season_number > 0)
-
   return (
     <main className="tv-show-layout">
       <ErrorBoundary>
@@ -53,14 +66,25 @@ export const TVShowLayout = observer(function TVShowLayout() {
             <h1>{show.name}</h1>
             <p>★ {show.vote_average.toFixed(1)}</p>
             <p>{show.overview}</p>
-            <WatchlistToggle
-              mediaType="tv"
-              mediaId={show.id}
-              title={show.name}
-              posterPath={show.poster_path}
-              voteAverage={show.vote_average}
-              variant="button"
-            />
+            <ShowProgressIndicator showId={show.id} />
+            <div className="movie-actions">
+              <WatchlistToggle
+                mediaType="tv"
+                mediaId={show.id}
+                title={show.name}
+                posterPath={show.poster_path}
+                voteAverage={show.vote_average}
+                variant="button"
+              />
+              <AddToListPopover
+                mediaType="tv"
+                mediaId={show.id}
+                title={show.name}
+                posterPath={show.poster_path}
+                voteAverage={show.vote_average}
+                variant="button"
+              />
+            </div>
           </div>
         </section>
       </ErrorBoundary>

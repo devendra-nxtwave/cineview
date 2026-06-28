@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
-import { watchlistStore } from '../../../data/stores/WatchlistStore'
+import { collectionStore } from '../../../data/stores/CollectionStore'
 import type { MediaType } from '../../../core/types'
 
 type WatchlistToggleProps = {
@@ -23,14 +23,14 @@ export const WatchlistToggle = observer(function WatchlistToggle({
   className = '',
 }: WatchlistToggleProps) {
   const { t } = useTranslation('collection')
-  const isInWatchlist = watchlistStore.isInWatchlist(mediaType, mediaId)
-  const entry = watchlistStore.getEntry(mediaType, mediaId)
+  const isInWatchlist = collectionStore.isInWatchlist(mediaType, mediaId)
+  const entry = collectionStore.getEntry(mediaType, mediaId)
   const hasNote = Boolean(entry?.note)
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     event.stopPropagation()
-    watchlistStore.toggle(mediaType, mediaId, {
+    collectionStore.toggle(mediaType, mediaId, {
       title,
       posterPath: posterPath ?? null,
       voteAverage,

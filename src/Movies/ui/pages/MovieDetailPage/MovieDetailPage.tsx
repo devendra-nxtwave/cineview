@@ -8,7 +8,7 @@ import {
   TrailerModal,
   getYouTubeTrailerKey,
 } from '../../../../Common'
-import { WatchlistToggle } from '../../../../Collection'
+import { WatchlistToggle, AddToListPopover } from '../../../../Collection'
 import { useMovieDetail } from '../../../data/hooks/useMovieDetail'
 import { ContentRow } from '../../components/ContentRow/ContentRow'
 import { CastCarousel } from '../../components/CastCarousel/CastCarousel'
@@ -75,6 +75,14 @@ export const MovieDetailPage = observer(function MovieDetailPage() {
                 </button>
               )}
               <WatchlistToggle
+                mediaType="movie"
+                mediaId={movie.id}
+                title={movie.title}
+                posterPath={movie.poster_path}
+                voteAverage={movie.vote_average}
+                variant="button"
+              />
+              <AddToListPopover
                 mediaType="movie"
                 mediaId={movie.id}
                 title={movie.title}

@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
-import { watchlistStore } from '../../../data/stores/WatchlistStore'
+import { collectionStore } from '../../../data/stores/CollectionStore'
 
 export const WatchlistBadge = observer(function WatchlistBadge() {
   const { t } = useTranslation('collection')
-  const count = watchlistStore.totalCount
+  const count = collectionStore.totalCount
 
   if (count === 0) return null
 

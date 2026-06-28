@@ -44,5 +44,34 @@
     "cancel": "Cancel",
     "clear": "Clear note",
     "counter": "{{count}} / {{max}}"
+  },
+  "lists": {
+    "create": "Create List",
+    "createTitle": "Create a new list",
+    "nameLabel": "List name",
+    "descriptionLabel": "Description (optional)",
+    "empty": "You have no custom lists yet.",
+    "noItems": "No items in this list.",
+    "noListsYet": "Create a list first from My Lists.",
+    "itemCount": "{{count}} items",
+    "addToList": "Add to List",
+    "addToListAria": "Add to custom list",
+    "rename": "Rename",
+    "delete": "Delete List",
+    "deleteTitle": "Delete list?",
+    "deleteMessage": "Delete \"{{name}}\"? Watchlist entries will not be affected.",
+    "deleteConfirm": "Delete",
+    "removeItemAria": "Remove from list",
+    "notFoundTitle": "List not found",
+    "notFoundDescription": "This list does not exist or was deleted.",
+    "backToLists": "Back to My Lists"
+  },
+  "episodes": {
+    "seasonProgress": "{{watched}} / {{total}} watched",
+    "showProgress": "{{watched}} / {{total}} episodes watched",
+    "watchedCount": "{{count}} watched",
+    "cardBadge": "{{watched}}/{{total}} eps",
+    "markAll": "Mark all watched",
+    "unmarkAll": "Unmark all"
   }
 }

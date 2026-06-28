@@ -45,4 +45,34 @@
     "clear": "నోట్ తొలగించండి",
     "counter": "{{count}} / {{max}}"
   }
+  ,
+  "lists": {
+    "create": "జాబితా సృష్టించండి",
+    "createTitle": "కొత్త జాబితా సృష్టించండి",
+    "nameLabel": "జాబితా పేరు",
+    "descriptionLabel": "వివరణ (ఐచ్ఛికం)",
+    "empty": "మీకు కస్టమ్ జాబితాలు లేవు.",
+    "noItems": "ఈ జాబితాలో అంశాలు లేవు.",
+    "noListsYet": "ముందుగా నా జాబితాల నుండి ఒక జాబితా సృష్టించండి.",
+    "itemCount": "{{count}} అంశాలు",
+    "addToList": "జాబితాకు జోడించండి",
+    "addToListAria": "కస్టమ్ జాబితాకు జోడించండి",
+    "rename": "పేరు మార్చండి",
+    "delete": "జాబితా తొలగించండి",
+    "deleteTitle": "జాబితా తొలగించాలా?",
+    "deleteMessage": "\"{{name}}\" తొలగించాలా? వాచ్‌లిస్ట్ ప్రభావितం కాదు.",
+    "deleteConfirm": "తొలగించండి",
+    "removeItemAria": "జాబితా నుండి తీసివేయండి",
+    "notFoundTitle": "జాబితా కనుగొనబడలేదు",
+    "notFoundDescription": "ఈ జాబితా లేదు లేదా తొలగించబడింది.",
+    "backToLists": "నా జాబితాలకు తిరిగి వెళ్లండి"
+  },
+  "episodes": {
+    "seasonProgress": "{{watched}} / {{total}} చూసారు",
+    "showProgress": "{{watched}} / {{total}} ఎపిసోడ్‌లు చూసారు",
+    "watchedCount": "{{count}} చూసారు",
+    "cardBadge": "{{watched}}/{{total}} ఎప్.",
+    "markAll": "అన్నీ చూసినట్లు గుర్తించండి",
+    "unmarkAll": "అన్నీ తొలగించండి"
+  }
 }
