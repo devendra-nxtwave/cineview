@@ -1,0 +1,29 @@
+{
+    "rows": {
+      "trending": "ట్రెండింగ్",
+      "popular": "జనాదరణ",
+      "topRated": "అత్యుత్తమ రేటింగ్",
+      "upcoming": "రాబోయేవి",
+      "similar": "ఇలాంటివి",
+      "recommended": "సిఫార్సు"
+    },
+    "genreAll": "అన్నీ",
+    "hero": {
+      "playTrailer": "ట్రైలర్ ఆడించండి",
+      "moreInfo": "మరింత సమాచారం"
+    },
+    "detail": {
+      "notFoundTitle": "సినిమా కనుగొనబడలేదు",
+      "notFoundDescription": "మీరు వెతుకుతున్న సినిమా లేదు.",
+      "loadFailed": "సినిమా వివరాలు లోడ్ కాలేదు",
+      "cast": "నటీనటులు",
+      "playTrailer": "ట్రైలర్ ఆడించండి",
+      "addWatchlist": "+ వాచ్‌లిస్ట్",
+      "runtimeMinutes_one": "{{count}} నిమి",
+      "runtimeMinutes_other": "{{count}} నిమి"
+    },
+    "castEmpty": "నటీనటుల సమాచారం లేదు.",
+    "contentRowEmpty": "ఈ వరుసలో సినిమాలు లేవు",
+    "homeLoadFailed": "హోమ్ పేజీ లోడ్ కాలేదు",
+    "addWatchlistAria": "వాచ్‌లిస్ట్‌కు జోడించండి"
+  }

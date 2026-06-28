@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { PosterImage, TrailerModal, tmdbService, getYouTubeTrailerKey } from '../../../../Common'
 import type { Movie } from '../../../../Common'
 
@@ -8,6 +9,7 @@ type HeroBannerProps = {
 }
 
 export function HeroBanner({ movie }: HeroBannerProps) {
+  const { t } = useTranslation('movies')
   const [isTrailerOpen, setIsTrailerOpen] = useState(false)
   const [trailerKey, setTrailerKey] = useState<string | null>(null)
 
@@ -38,10 +40,10 @@ export function HeroBanner({ movie }: HeroBannerProps) {
         {movie.overview && <p className="hero-overview">{movie.overview}</p>}
         <div className="hero-actions">
           <button type="button" onClick={handlePlayTrailer}>
-            Play Trailer
+            {t('hero.playTrailer')}
           </button>
           <Link to={`/movies/${movie.id}`} className="hero-link">
-            More Info
+            {t('hero.moreInfo')}
           </Link>
         </div>
       </div>

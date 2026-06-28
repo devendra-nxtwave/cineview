@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import { PageShell } from '../../../../Common'
 
 export function MyListsPage() {
+  const { t } = useTranslation('collection')
+
   return (
-    <PageShell title="My Lists Page">
-      <p>Your custom collections will appear here.</p>
+    <PageShell title={t('listsTitle')}>
+      <p>{t('listsPlaceholder')}</p>
     </PageShell>
   )
 }

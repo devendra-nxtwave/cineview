@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { PosterImage } from '../../../../Common'
 import type { CastMember } from '../../../../Common'
 
@@ -6,7 +7,9 @@ type CastCarouselProps = {
 }
 
 export function CastCarousel({ cast }: CastCarouselProps) {
-  if (cast.length === 0) return <p>No cast information.</p>
+  const { t } = useTranslation('movies')
+
+  if (cast.length === 0) return <p>{t('castEmpty')}</p>
 
   return (
     <div className="cast-carousel">

@@ -1,0 +1,12 @@
+{
+    "notFoundTitle": "టీవీ షో కనుగొనబడలేదు",
+    "loadFailed": "టీవీ షో లోడ్ కాలేదు",
+    "addWatchlist": "+ వాచ్‌లిస్ట్",
+    "addWatchlistAria": "వాచ్‌లిస్ట్‌కు జోడించండి",
+    "selectSeason": "ఎపిసోడ్‌లు చూడడానికి సీజన్‌ను ఎంచుకోండి.",
+    "seasonTitle": "సీజన్ {{number}}",
+    "noEpisodes": "ఎపిసోడ్‌లు లేవు",
+    "seasonLoadFailed": "సీజన్ లోడ్ కాలేదు",
+    "noOverview": "వివరణ లేదు.",
+    "markWatchedAria": "ఎపిసోడ్ చూసినట్లు గుర్తించండి"
+  }

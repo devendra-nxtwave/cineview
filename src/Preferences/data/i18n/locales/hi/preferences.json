@@ -1,0 +1,16 @@
+{
+    "title": "सेटिंग्स",
+    "language": {
+      "title": "भाषा",
+      "description": "UI टेक्स्ट और TMDB सामग्री की भाषा बदलता है।"
+    },
+    "region": {
+      "title": "क्षेत्र",
+      "description": "TMDB सामग्री के लिए पसंदीदा क्षेत्र।"
+    },
+    "theme": {
+      "title": "थीम",
+      "light": "लाइट",
+      "dark": "डार्क"
+    }
+  }

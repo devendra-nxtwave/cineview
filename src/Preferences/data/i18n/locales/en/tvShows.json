@@ -1,0 +1,12 @@
+{
+    "notFoundTitle": "TV show not found",
+    "loadFailed": "Failed to load TV show",
+    "addWatchlist": "+ Watchlist",
+    "addWatchlistAria": "Add to watchlist",
+    "selectSeason": "Select a season to view episodes.",
+    "seasonTitle": "Season {{number}}",
+    "noEpisodes": "No episodes",
+    "seasonLoadFailed": "Failed to load season",
+    "noOverview": "No overview.",
+    "markWatchedAria": "Mark episode watched"
+  }

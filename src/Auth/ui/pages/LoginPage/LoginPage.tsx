@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { authService } from '../../../data/services/authService'
 import { sessionService } from '../../../data/services/sessionService'
 import { LoginForm } from '../../components/LoginForm/LoginForm'
 
 export function LoginPage() {
+  const { t } = useTranslation('auth')
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Already logged in? Go home.
   useEffect(() => {
     if (sessionService.isAuthenticated()) {
       navigate('/', { replace: true })
@@ -24,7 +25,7 @@ export function LoginPage() {
     const isValid = authService.validateCredentials(username, password)
 
     if (!isValid) {
-      setErrorMessage('Invalid username or password')
+      setErrorMessage(t('invalidCredentials'))
       setIsSubmitting(false)
       return
     }

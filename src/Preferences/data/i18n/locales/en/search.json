@@ -1,0 +1,16 @@
+{
+    "title": "Search",
+    "placeholder": "Search movies, shows, people…",
+    "searching": "Searching…",
+    "failed": "Search failed",
+    "hint": "Type to search movies, TV shows, or people.",
+    "noResults": "No results found for \"{{query}}\".",
+    "recent": "Recent",
+    "clear": "Clear",
+    "groups": {
+      "movies": "Movies",
+      "tv": "TV Shows",
+      "people": "People"
+    },
+    "unknown": "Unknown"
+  }

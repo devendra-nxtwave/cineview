@@ -1,0 +1,25 @@
+{
+    "appName": "CineView",
+    "loading": "लोड हो रहा है…",
+    "retry": "पुनः प्रयास करें",
+    "close": "बंद करें",
+    "logout": "लॉग आउट",
+    "searchPlaceholder": "फ़िल्में, शो खोजें…",
+    "searchAria": "खोज",
+    "nav": {
+      "home": "होम",
+      "watchlist": "वॉचलिस्ट",
+      "lists": "मेरी सूचियाँ",
+      "settings": "सेटिंग्स"
+    },
+    "async": {
+      "loading": "लोड हो रहा है…",
+      "error": "कुछ गलत हो गया",
+      "empty": "दिखाने के लिए कुछ नहीं",
+      "sectionFailed": "यह अनुभाग लोड नहीं हो सका।"
+    },
+    "notFound": {
+      "title": "404 — पृष्ठ नहीं मिला",
+      "description": "आप जो पृष्ठ खोज रहे हैं वह मौजूद नहीं है।"
+    }
+  }

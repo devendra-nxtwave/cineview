@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 import { PosterImage, tmdbService, type SearchResult } from '../../../../Common'
+import { preferencesStore } from '../../../../Preferences/data/stores/PreferencesStore'
 import { recentSearchService } from '../../../data/services/recentSearchService'
 import { useDebounce } from '../../../data/hooks/useDebounce'
-
-function getResultTitle(item: SearchResult): string {
-  return item.title ?? item.name ?? 'Unknown'
-}
 
 function getResultLink(item: SearchResult): string | null {
   if (item.media_type === 'movie') return `/movies/${item.id}`
@@ -22,7 +21,11 @@ function groupResults(results: SearchResult[]) {
   }
 }
 
-export function SearchPage() {
+export const SearchPage = observer(function SearchPage() {
+  const { t } = useTranslation('search')
+  const language = preferencesStore.language
+  const region = preferencesStore.region
+
   const [searchParams] = useSearchParams()
   const [query, setQuery] = useState(searchParams.get('q') ?? '')
   const debouncedQuery = useDebounce(query, 300)
@@ -31,7 +34,6 @@ export function SearchPage() {
   const [error, setError] = useState<string | null>(null)
   const [recent, setRecent] = useState<string[]>(recentSearchService.getAll())
 
-  // Navbar sends /search?q=...
   useEffect(() => {
     setQuery(searchParams.get('q') ?? '')
   }, [searchParams])
@@ -58,7 +60,7 @@ export function SearchPage() {
         recentSearchService.add(trimmed)
         setRecent(recentSearchService.getAll())
       } catch {
-        if (!cancelled) setError('Search failed')
+        if (!cancelled) setError(t('failed'))
       } finally {
         if (!cancelled) setIsLoading(false)
       }
@@ -66,7 +68,7 @@ export function SearchPage() {
 
     search()
     return () => { cancelled = true }
-  }, [debouncedQuery])
+  }, [debouncedQuery, language, region, t])
 
   const isWaitingForDebounce = query.trim() !== debouncedQuery.trim()
   const isSearching = isLoading || isWaitingForDebounce
@@ -76,12 +78,12 @@ export function SearchPage() {
 
   return (
     <main className="page-shell search-page">
-      <h1>Search</h1>
+      <h1>{t('title')}</h1>
 
       <input
         className="search-input"
         type="search"
-        placeholder="Search movies, shows, people…"
+        placeholder={t('placeholder')}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
@@ -89,7 +91,7 @@ export function SearchPage() {
       {recent.length > 0 && !query && (
         <section className="recent-searches">
           <div className="recent-header">
-            <h2>Recent</h2>
+            <h2>{t('recent')}</h2>
             <button
               type="button"
               onClick={() => {
@@ -97,7 +99,7 @@ export function SearchPage() {
                 setRecent([])
               }}
             >
-              Clear
+              {t('clear')}
             </button>
           </div>
           <div className="recent-chips">
@@ -115,29 +117,36 @@ export function SearchPage() {
         </section>
       )}
 
-      {isSearching && <p className="search-status">Searching…</p>}
+      {isSearching && <p className="search-status">{t('searching')}</p>}
       {error && <p className="search-error">{error}</p>}
 
       {!hasQuery && !isSearching && (
-        <p className="search-hint">Type to search movies, TV shows, or people.</p>
+        <p className="search-hint">{t('hint')}</p>
       )}
 
       {hasQuery && !isSearching && !error && !hasResults && (
-        <p className="search-hint">No results found for &quot;{debouncedQuery}&quot;.</p>
+        <p className="search-hint">{t('noResults', { query: debouncedQuery })}</p>
       )}
 
       {hasResults && (
         <>
-          <SearchGroup title="Movies" items={grouped.movies} />
-          <SearchGroup title="TV Shows" items={grouped.tv} />
-          <SearchGroup title="People" items={grouped.people} />
+          <SearchGroup title={t('groups.movies')} items={grouped.movies} />
+          <SearchGroup title={t('groups.tv')} items={grouped.tv} />
+          <SearchGroup title={t('groups.people')} items={grouped.people} />
         </>
       )}
     </main>
   )
+})
+
+type SearchGroupProps = {
+  title: string
+  items: SearchResult[]
 }
 
-function SearchGroup({ title, items }: { title: string; items: SearchResult[] }) {
+function SearchGroup({ title, items }: SearchGroupProps) {
+  const { t } = useTranslation('search')
+
   if (items.length === 0) return null
 
   return (
@@ -146,7 +155,7 @@ function SearchGroup({ title, items }: { title: string; items: SearchResult[] })
       <div className="search-results">
         {items.map((item) => {
           const link = getResultLink(item)
-          const name = getResultTitle(item)
+          const name = item.title ?? item.name ?? t('unknown')
           const imagePath = item.poster_path ?? item.profile_path
           const isPerson = item.media_type === 'person'
 

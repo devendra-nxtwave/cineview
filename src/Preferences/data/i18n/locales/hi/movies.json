@@ -1,0 +1,29 @@
+{
+    "rows": {
+      "trending": "ट्रेंडिंग",
+      "popular": "लोकप्रिय",
+      "topRated": "सर्वश्रेष्ठ रेटेड",
+      "upcoming": "आगामी",
+      "similar": "समान",
+      "recommended": "अनुशंसित"
+    },
+    "genreAll": "सभी",
+    "hero": {
+      "playTrailer": "ट्रेलर चलाएँ",
+      "moreInfo": "और जानकारी"
+    },
+    "detail": {
+      "notFoundTitle": "फ़िल्म नहीं मिली",
+      "notFoundDescription": "आप जो फ़िल्म खोज रहे हैं वह मौजूद नहीं है।",
+      "loadFailed": "फ़िल्म विवरण लोड नहीं हो सका",
+      "cast": "कलाकार",
+      "playTrailer": "ट्रेलर चलाएँ",
+      "addWatchlist": "+ वॉचलिस्ट",
+      "runtimeMinutes_one": "{{count}} मिनट",
+      "runtimeMinutes_other": "{{count}} मिनट"
+    },
+    "castEmpty": "कलाकार की जानकारी नहीं है।",
+    "contentRowEmpty": "इस पंक्ति में कोई फ़िल्म नहीं",
+    "homeLoadFailed": "होम पेज लोड नहीं हो सका",
+    "addWatchlistAria": "वॉचलिस्ट में जोड़ें"
+  }

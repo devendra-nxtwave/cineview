@@ -1,0 +1,29 @@
+{
+    "rows": {
+      "trending": "Trending",
+      "popular": "Popular",
+      "topRated": "Top Rated",
+      "upcoming": "Upcoming",
+      "similar": "Similar",
+      "recommended": "Recommended"
+    },
+    "genreAll": "All",
+    "hero": {
+      "playTrailer": "Play Trailer",
+      "moreInfo": "More Info"
+    },
+    "detail": {
+      "notFoundTitle": "Movie not found",
+      "notFoundDescription": "The movie you are looking for does not exist.",
+      "loadFailed": "Failed to load movie details",
+      "cast": "Cast",
+      "playTrailer": "Play Trailer",
+      "addWatchlist": "+ Watchlist",
+      "runtimeMinutes_one": "{{count}} min",
+      "runtimeMinutes_other": "{{count}} min"
+    },
+    "castEmpty": "No cast information.",
+    "contentRowEmpty": "No movies in this row",
+    "homeLoadFailed": "Failed to load home page content",
+    "addWatchlistAria": "Add to watchlist"
+  }

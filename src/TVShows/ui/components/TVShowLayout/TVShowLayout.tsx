@@ -1,8 +1,13 @@
 import { NavLink, Outlet, useParams } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 import { ErrorBoundary, PosterImage } from '../../../../Common'
 import { useTVShowDetail } from '../../../data/hooks/useTVShowDetail'
 
-export function TVShowLayout() {
+export const TVShowLayout = observer(function TVShowLayout() {
+  const { t } = useTranslation('tvShows')
+  const { t: tCommon } = useTranslation('common')
+
   const { showId } = useParams()
   const id = Number(showId)
   const { show, isLoading, notFound, error } = useTVShowDetail(id)
@@ -10,13 +15,26 @@ export function TVShowLayout() {
   if (notFound) {
     return (
       <main className="page-shell">
-        <h1>TV show not found</h1>
+        <h1>{t('notFoundTitle')}</h1>
       </main>
     )
   }
 
-  if (isLoading) return <main className="page-shell"><p>Loading…</p></main>
-  if (error || !show) return <main className="page-shell"><p>{error}</p></main>
+  if (isLoading) {
+    return (
+      <main className="page-shell">
+        <p>{tCommon('loading')}</p>
+      </main>
+    )
+  }
+
+  if (error || !show) {
+    return (
+      <main className="page-shell">
+        <p>{t('loadFailed')}</p>
+      </main>
+    )
+  }
 
   const seasons = show.seasons.filter((s) => s.season_number > 0)
 
@@ -24,12 +42,19 @@ export function TVShowLayout() {
     <main className="tv-show-layout">
       <ErrorBoundary>
         <section className="show-hero">
-          <PosterImage path={show.backdrop_path} alt={show.name} size="backdrop" className="movie-hero-backdrop" />
+          <PosterImage
+            path={show.backdrop_path}
+            alt={show.name}
+            size="backdrop"
+            className="movie-hero-backdrop"
+          />
           <div className="movie-hero-content">
             <h1>{show.name}</h1>
             <p>★ {show.vote_average.toFixed(1)}</p>
             <p>{show.overview}</p>
-            <button type="button" aria-label="Add to watchlist">+ Watchlist</button>
+            <button type="button" aria-label={t('addWatchlistAria')}>
+              {t('addWatchlist')}
+            </button>
           </div>
         </section>
       </ErrorBoundary>
@@ -49,4 +74,4 @@ export function TVShowLayout() {
       <Outlet />
     </main>
   )
-}
+})

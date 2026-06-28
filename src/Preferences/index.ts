@@ -1,1 +1,5 @@
 export { SettingsPage } from './ui/pages/SettingsPage/SettingsPage'
+export { preferencesStore } from './data/stores/PreferencesStore'
+export { ThemeSync } from './ui/components/ThemeSync/ThemeSync'
+export { LanguageSwitcher } from './ui/components/LanguageSwitcher/LanguageSwitcher'
+export { SUPPORTED_LOCALES, SUPPORTED_REGIONS } from './core/constants'

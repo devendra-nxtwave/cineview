@@ -1,0 +1,12 @@
+{
+    "notFoundTitle": "टीवी शो नहीं मिला",
+    "loadFailed": "टीवी शो लोड नहीं हो सका",
+    "addWatchlist": "+ वॉचलिस्ट",
+    "addWatchlistAria": "वॉचलिस्ट में जोड़ें",
+    "selectSeason": "एपिसोड देखने के लिए सीज़न चुनें।",
+    "seasonTitle": "सीज़न {{number}}",
+    "noEpisodes": "कोई एपिसोड नहीं",
+    "seasonLoadFailed": "सीज़न लोड नहीं हो सका",
+    "noOverview": "कोई विवरण नहीं।",
+    "markWatchedAria": "एपिसोड देखा चिह्नित करें"
+  }

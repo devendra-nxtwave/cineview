@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { tmdbService } from '../../../Common'
 import type { CastMember, Movie, MovieDetail, Video } from '../../../Common'
+import { preferencesStore } from '../../../Preferences/data/stores/PreferencesStore'
 
 type MovieDetailState = {
   movie: MovieDetail | null
@@ -15,6 +16,9 @@ type MovieDetailState = {
 }
 
 export function useMovieDetail(movieId: number): MovieDetailState {
+  const language = preferencesStore.language
+  const region = preferencesStore.region
+
   const [movie, setMovie] = useState<MovieDetail | null>(null)
   const [videos, setVideos] = useState<Video[]>([])
   const [cast, setCast] = useState<CastMember[]>([])
@@ -72,7 +76,7 @@ export function useMovieDetail(movieId: number): MovieDetailState {
 
     load()
     return () => { cancelled = true }
-  }, [movieId, reloadKey])
+  }, [movieId, reloadKey, language, region])
 
   return { movie, videos, cast, similar, recommended, isLoading, notFound, error, reload }
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import type { Genre } from '../../../../Common'
 
 type GenreFilterProps = {
@@ -7,6 +8,8 @@ type GenreFilterProps = {
 }
 
 export function GenreFilter({ genres, activeGenreId, onSelect }: GenreFilterProps) {
+  const { t } = useTranslation('movies')
+
   return (
     <div className="genre-filter">
       <button
@@ -14,7 +17,7 @@ export function GenreFilter({ genres, activeGenreId, onSelect }: GenreFilterProp
         className={`genre-chip ${activeGenreId === null ? 'active' : ''}`}
         onClick={() => onSelect(null)}
       >
-        All
+        {t('genreAll')}
       </button>
       {genres.map((genre) => (
         <button

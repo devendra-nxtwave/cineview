@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 import { tmdbService, type Episode } from '../../../Common'
+import { preferencesStore } from '../../../Preferences/data/stores/PreferencesStore'
 
 export function useSeasonDetail(showId: number, seasonNumber: number) {
+  const language = preferencesStore.language
+  const region = preferencesStore.region
+
   const [episodes, setEpisodes] = useState<Episode[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -24,7 +28,7 @@ export function useSeasonDetail(showId: number, seasonNumber: number) {
 
     load()
     return () => { cancelled = true }
-  }, [showId, seasonNumber])
+  }, [showId, seasonNumber, language, region])
 
   return { episodes, isLoading, error }
 }

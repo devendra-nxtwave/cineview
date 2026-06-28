@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next'
+
 export function TVShowDetailPage() {
+  const { t } = useTranslation('tvShows')
+
   return (
     <section className="tv-show-overview">
-      <p>Select a season to view episodes.</p>
+      <p>{t('selectSeason')}</p>
     </section>
   )
 }

@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import { PageShell } from '../../components/PageShell/PageShell'
 
 export function NotFoundPage() {
+  const { t } = useTranslation('common')
+
   return (
-    <PageShell title="404 — Page Not Found">
-      <p>The page you are looking for does not exist.</p>
+    <PageShell title={t('notFound.title')}>
+      <p>{t('notFound.description')}</p>
     </PageShell>
   )
 }

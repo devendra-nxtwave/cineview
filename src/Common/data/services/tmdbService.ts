@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { DEFAULT_LANGUAGE } from '../../core/constants'
+import { preferencesStore } from '../../../Preferences/data/stores/PreferencesStore'
 import {
   movieListSchema,
   genreListSchema,
@@ -24,12 +24,20 @@ import type {
   Episode,
 } from '../../core/types'
 
-function parse<T>(
-  schema: { safeParse: (data: unknown) => { success: boolean; data?: T } },
-  data: unknown,
-): T {
+function tmdbParams(extra: Record<string, string | number> = {}) {
+  return {
+    language: preferencesStore.tmdbLanguage,
+    region: preferencesStore.region,
+    ...extra,
+  }
+}
+
+import { z } from 'zod'
+
+function parse<T>(schema: z.ZodType<T>, data: unknown): T {
   const result = schema.safeParse(data)
-  if (!result.success || result.data === undefined) {
+  if (!result.success) {
+    console.error('TMDB Zod validation failed:', result.error.flatten())
     throw new Error('Invalid TMDB response')
   }
   return result.data
@@ -43,35 +51,35 @@ export function getYouTubeTrailerKey(videos: Video[]): string | null {
 export const tmdbService = {
   async getTrendingMovies(): Promise<Movie[]> {
     const { data } = await tmdbClient.get('/trending/movie/day', {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(movieListSchema, data).results
   },
 
   async getPopularMovies(): Promise<Movie[]> {
     const { data } = await tmdbClient.get('/movie/popular', {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(movieListSchema, data).results
   },
 
   async getTopRatedMovies(): Promise<Movie[]> {
     const { data } = await tmdbClient.get('/movie/top_rated', {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(movieListSchema, data).results
   },
 
   async getUpcomingMovies(): Promise<Movie[]> {
     const { data } = await tmdbClient.get('/movie/upcoming', {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(movieListSchema, data).results
   },
 
   async getMovieGenres(): Promise<Genre[]> {
     const { data } = await tmdbClient.get('/genre/movie/list', {
-      params: { language: DEFAULT_LANGUAGE },
+      params: { language: 'en-US' },
     })
     return parse(genreListSchema, data).genres
   },
@@ -79,7 +87,7 @@ export const tmdbService = {
   async getMovieDetails(movieId: number): Promise<MovieDetail> {
     try {
       const { data } = await tmdbClient.get(`/movie/${movieId}`, {
-        params: { language: DEFAULT_LANGUAGE },
+        params: tmdbParams(),
       })
       return parse(movieDetailSchema, data)
     } catch (error) {
@@ -91,7 +99,9 @@ export const tmdbService = {
   },
 
   async getMovieVideos(movieId: number): Promise<Video[]> {
-    const { data } = await tmdbClient.get(`/movie/${movieId}/videos`)
+    const { data } = await tmdbClient.get(`/movie/${movieId}/videos`, {
+      params: tmdbParams(),
+    })
     return parse(videosSchema, data).results
   },
 
@@ -102,21 +112,21 @@ export const tmdbService = {
 
   async getSimilarMovies(movieId: number): Promise<Movie[]> {
     const { data } = await tmdbClient.get(`/movie/${movieId}/similar`, {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(movieListSchema, data).results
   },
 
   async getRecommendedMovies(movieId: number): Promise<Movie[]> {
     const { data } = await tmdbClient.get(`/movie/${movieId}/recommendations`, {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(movieListSchema, data).results
   },
 
   async searchMulti(query: string): Promise<SearchResult[]> {
     const { data } = await tmdbClient.get('/search/multi', {
-      params: { query, language: DEFAULT_LANGUAGE },
+      params: tmdbParams({ query }),
     })
     return parse(searchMultiSchema, data).results
   },
@@ -124,7 +134,7 @@ export const tmdbService = {
   async getTVShowDetails(showId: number): Promise<TVShowDetail> {
     try {
       const { data } = await tmdbClient.get(`/tv/${showId}`, {
-        params: { language: DEFAULT_LANGUAGE },
+        params: tmdbParams(),
       })
       return parse(tvShowDetailSchema, data)
     } catch (error) {
@@ -137,8 +147,8 @@ export const tmdbService = {
 
   async getSeasonDetails(showId: number, seasonNumber: number): Promise<Episode[]> {
     const { data } = await tmdbClient.get(`/tv/${showId}/season/${seasonNumber}`, {
-      params: { language: DEFAULT_LANGUAGE },
+      params: tmdbParams(),
     })
     return parse(seasonDetailSchema, data).episodes
   },
-}
+} 

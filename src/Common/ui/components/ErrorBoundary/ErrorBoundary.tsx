@@ -1,4 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
+import i18n from '../../../../Preferences/data/i18n/i18n'
 
 type Props = {
   children: ReactNode
@@ -20,7 +21,11 @@ export class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback ?? <p>This section failed to load.</p>
+      return (
+        this.props.fallback ?? (
+          <p>{i18n.t('async.sectionFailed', { ns: 'common' })}</p>
+        )
+      )
     }
     return this.props.children
   }

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 import {
-  
   ErrorBoundary,
   PosterImage,
   TrailerModal,
@@ -11,7 +12,10 @@ import { useMovieDetail } from '../../../data/hooks/useMovieDetail'
 import { ContentRow } from '../../components/ContentRow/ContentRow'
 import { CastCarousel } from '../../components/CastCarousel/CastCarousel'
 
-export function MovieDetailPage() {
+export const MovieDetailPage = observer(function MovieDetailPage() {
+  const { t } = useTranslation('movies')
+  const { t: tCommon } = useTranslation('common')
+
   const { movieId } = useParams()
   const id = Number(movieId)
   const { movie, videos, cast, similar, recommended, isLoading, notFound, error } =
@@ -23,33 +27,55 @@ export function MovieDetailPage() {
   if (notFound) {
     return (
       <main className="page-shell">
-        <h1>Movie not found</h1>
-        <p>The movie you are looking for does not exist.</p>
+        <h1>{t('detail.notFoundTitle')}</h1>
+        <p>{t('detail.notFoundDescription')}</p>
       </main>
     )
   }
 
-  if (isLoading) return <main className="page-shell"><p>Loading…</p></main>
-  if (error || !movie) return <main className="page-shell"><p>{error}</p></main>
+  if (isLoading) {
+    return (
+      <main className="page-shell">
+        <p>{tCommon('loading')}</p>
+      </main>
+    )
+  }
+
+  if (error || !movie) {
+    return (
+      <main className="page-shell">
+        <p>{t('detail.loadFailed')}</p>
+      </main>
+    )
+  }
 
   return (
     <main className="movie-detail-page">
       <ErrorBoundary>
         <section className="movie-hero">
-          <PosterImage path={movie.backdrop_path} alt={movie.title} size="backdrop" className="movie-hero-backdrop" />
+          <PosterImage
+            path={movie.backdrop_path}
+            alt={movie.title}
+            size="backdrop"
+            className="movie-hero-backdrop"
+          />
           <div className="movie-hero-content">
             <h1>{movie.title}</h1>
             <p>★ {movie.vote_average.toFixed(1)}</p>
-            {movie.runtime && <p>{movie.runtime} min</p>}
+            {movie.runtime && (
+              <p>{t('detail.runtimeMinutes', { count: movie.runtime })}</p>
+            )}
             {movie.genres && <p>{movie.genres.map((g) => g.name).join(', ')}</p>}
             <p>{movie.overview}</p>
             <div className="movie-actions">
               {trailerKey && (
                 <button type="button" onClick={() => setIsTrailerOpen(true)}>
-                  Play Trailer
+                  {t('detail.playTrailer')}
                 </button>
               )}
-              <button type="button" aria-label="Add to watchlist">+ Watchlist</button>
+              <button type="button" aria-label={t('addWatchlistAria')}>
+                {t('detail.addWatchlist')}
+              </button>
             </div>
           </div>
         </section>
@@ -57,17 +83,17 @@ export function MovieDetailPage() {
 
       <ErrorBoundary>
         <section>
-          <h2>Cast</h2>
+          <h2>{t('detail.cast')}</h2>
           <CastCarousel cast={cast} />
         </section>
       </ErrorBoundary>
 
       <ErrorBoundary>
-        <ContentRow title="Similar" movies={similar} isLoading={false} error={null} />
+        <ContentRow title={t('rows.similar')} movies={similar} isLoading={false} error={null} />
       </ErrorBoundary>
 
       <ErrorBoundary>
-        <ContentRow title="Recommended" movies={recommended} isLoading={false} error={null} />
+        <ContentRow title={t('rows.recommended')} movies={recommended} isLoading={false} error={null} />
       </ErrorBoundary>
 
       <TrailerModal
@@ -78,4 +104,4 @@ export function MovieDetailPage() {
       />
     </main>
   )
-}
+})

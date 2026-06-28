@@ -1,13 +1,16 @@
-import { useNavigate } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
 import { type FormEvent, useState } from 'react'
-
+import { NavLink, useNavigate } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
+import { LanguageSwitcher, preferencesStore, SUPPORTED_LOCALES } from '../../../../../Preferences'
 type NavbarProps = {
   username: string
   onLogout: () => void
 }
 
-export function Navbar({ username, onLogout }: NavbarProps) {
+
+export const Navbar = observer(function Navbar({ username, onLogout }: NavbarProps) {
+  const { t } = useTranslation('common')
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -25,14 +28,14 @@ export function Navbar({ username, onLogout }: NavbarProps) {
     <header className="navbar">
       <div className="navbar-left">
         <NavLink to="/" className="navbar-logo" end>
-          CineView
+          {t('appName')}
         </NavLink>
 
         <nav className="navbar-links">
-          <NavLink to="/" end>Home</NavLink>
-          <NavLink to="/watchlist">Watchlist</NavLink>
-          <NavLink to="/lists">My Lists</NavLink>
-          <NavLink to="/settings">Settings</NavLink>
+          <NavLink to="/" end>{t('nav.home')}</NavLink>
+          <NavLink to="/watchlist">{t('nav.watchlist')}</NavLink>
+          <NavLink to="/lists">{t('nav.lists')}</NavLink>
+          <NavLink to="/settings">{t('nav.settings')}</NavLink>
         </nav>
       </div>
 
@@ -41,23 +44,27 @@ export function Navbar({ username, onLogout }: NavbarProps) {
           <input
             className="navbar-search"
             type="search"
-            placeholder="Search movies, shows…"
-            aria-label="Search"
+            placeholder={t('searchPlaceholder')}
+            aria-label={t('searchAria')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </form>
 
-        <span className="navbar-lang" aria-label="Language switcher">EN</span>
+        <LanguageSwitcher
+          value={preferencesStore.language}
+          options={SUPPORTED_LOCALES}
+          onChange={(code) => preferencesStore.setLanguage(code)}
+        />
 
         <span className="navbar-avatar" aria-label="User avatar">
           {username.charAt(0).toUpperCase()}
         </span>
 
         <button type="button" className="navbar-logout" onClick={onLogout}>
-          Logout
+          {t('logout')}
         </button>
       </div>
     </header>
   )
-}
+})

@@ -1,0 +1,25 @@
+{
+    "appName": "CineView",
+    "loading": "Loading…",
+    "retry": "Retry",
+    "close": "Close",
+    "logout": "Logout",
+    "searchPlaceholder": "Search movies, shows…",
+    "searchAria": "Search",
+    "nav": {
+      "home": "Home",
+      "watchlist": "Watchlist",
+      "lists": "My Lists",
+      "settings": "Settings"
+    },
+    "async": {
+      "loading": "Loading…",
+      "error": "Something went wrong",
+      "empty": "Nothing to show",
+      "sectionFailed": "This section failed to load."
+    },
+    "notFound": {
+      "title": "404 — Page Not Found",
+      "description": "The page you are looking for does not exist."
+    }
+  }

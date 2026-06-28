@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { tmdbService } from '../../../Common'
 import type { Genre, Movie } from '../../../Common/core/types'
+import { preferencesStore } from '../../../Preferences/data/stores/PreferencesStore'
+import i18n from '../../../Preferences/data/i18n/i18n'
 
 type HomePageData = {
   trending: Movie[]
@@ -13,6 +15,9 @@ type HomePageData = {
 }
 
 export function useHomePageData(): HomePageData {
+  const language = preferencesStore.language
+  const region = preferencesStore.region
+
   const [trending, setTrending] = useState<Movie[]>([])
   const [popular, setPopular] = useState<Movie[]>([])
   const [topRated, setTopRated] = useState<Movie[]>([])
@@ -25,36 +30,49 @@ export function useHomePageData(): HomePageData {
     let cancelled = false
 
     async function load() {
-      try {
-        setIsLoading(true)
-        setError(null)
+      setIsLoading(true)
+      setError(null)
 
-        const [trendingData, popularData, topRatedData, upcomingData, genreData] =
-          await Promise.all([
-            tmdbService.getTrendingMovies(),
-            tmdbService.getPopularMovies(),
-            tmdbService.getTopRatedMovies(),
-            tmdbService.getUpcomingMovies(),
-            tmdbService.getMovieGenres(),
-          ])
+      setTrending([])
+      setPopular([])
+      setTopRated([])
+      setUpcoming([])
+      setGenres([])
 
-        if (cancelled) return
+      const tasks = [
+        { label: 'trending', run: () => tmdbService.getTrendingMovies(), set: setTrending },
+        { label: 'popular', run: () => tmdbService.getPopularMovies(), set: setPopular },
+        { label: 'topRated', run: () => tmdbService.getTopRatedMovies(), set: setTopRated },
+        { label: 'upcoming', run: () => tmdbService.getUpcomingMovies(), set: setUpcoming },
+        { label: 'genres', run: () => tmdbService.getMovieGenres(), set: setGenres },
+      ] as const
 
-        setTrending(trendingData)
-        setPopular(popularData)
-        setTopRated(topRatedData)
-        setUpcoming(upcomingData)
-        setGenres(genreData)
-      } catch {
-        if (!cancelled) setError('Failed to load home page content')
-      } finally {
-        if (!cancelled) setIsLoading(false)
+      const results = await Promise.allSettled(tasks.map((task) => task.run()))
+
+      if (cancelled) return
+
+      let successCount = 0
+
+      results.forEach((result, index) => {
+        const task = tasks[index]
+        if (result.status === 'fulfilled') {
+          successCount += 1
+          task.set(result.value as Movie[] & Genre[])
+        } else {
+          console.error(`Home page ${task.label} failed:`, result.reason)
+        }
+      })
+
+      if (successCount === 0) {
+        setError(i18n.t('homeLoadFailed', { ns: 'movies' }))
       }
+
+      setIsLoading(false)
     }
 
     load()
     return () => { cancelled = true }
-  }, [])
+  }, [language, region])
 
   return { trending, popular, topRated, upcoming, genres, isLoading, error }
 }

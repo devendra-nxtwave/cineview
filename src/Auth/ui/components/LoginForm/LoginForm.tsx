@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 
 const loginFormSchema = z.object({
-  username: z.string().min(1, 'Username is required'),
-  password: z.string().min(1, 'Password is required'),
+  username: z.string().min(1),
+  password: z.string().min(1),
 })
 
 type LoginFormProps = {
@@ -17,6 +18,8 @@ export function LoginForm({
   errorMessage,
   isSubmitting = false,
 }: LoginFormProps) {
+  const { t } = useTranslation('auth')
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -28,7 +31,14 @@ export function LoginForm({
 
     const result = loginFormSchema.safeParse({ username, password })
     if (!result.success) {
-      setValidationError(result.error.issues[0]?.message ?? 'Invalid input')
+      const field = result.error.issues[0]?.path[0]
+      const message =
+        field === 'username'
+          ? t('usernameRequired')
+          : field === 'password'
+            ? t('passwordRequired')
+            : t('invalidInput')
+      setValidationError(message)
       return
     }
 
@@ -40,7 +50,7 @@ export function LoginForm({
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h1>CineView</h1>
-      <p className="login-subtitle">Sign in to continue</p>
+      <p className="login-subtitle">{t('subtitle')}</p>
 
       {displayError && (
         <p className="login-error" role="alert">
@@ -48,7 +58,7 @@ export function LoginForm({
         </p>
       )}
 
-      <label htmlFor="username">Username</label>
+      <label htmlFor="username">{t('username')}</label>
       <input
         id="username"
         type="text"
@@ -58,7 +68,7 @@ export function LoginForm({
         disabled={isSubmitting}
       />
 
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">{t('password')}</label>
       <div className="password-field">
         <input
           id="password"
@@ -72,14 +82,14 @@ export function LoginForm({
           type="button"
           className="password-toggle"
           onClick={() => setShowPassword((prev) => !prev)}
-          aria-label={showPassword ? 'Hide password' : 'Show password'}
+          aria-label={showPassword ? t('hidePasswordAria') : t('showPasswordAria')}
         >
-          {showPassword ? 'Hide' : 'Show'}
+          {showPassword ? t('hidePassword') : t('showPassword')}
         </button>
       </div>
 
       <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Signing in…' : 'Sign in'}
+        {isSubmitting ? t('signingIn') : t('signIn')}
       </button>
     </form>
   )
